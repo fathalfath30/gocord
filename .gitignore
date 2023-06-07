@@ -1,0 +1,6 @@
+### application IDE
+.idea
+
+### nodejs modules
+node_modules
+yarn.lock
