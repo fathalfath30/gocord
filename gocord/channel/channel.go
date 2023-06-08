@@ -15,19 +15,8 @@
 //
 */
 
-package guild
+package channel
 
-//go:generate mockery --name IGuild --filename guild.mock.go --structname GuildMock
 type (
-	IGuild interface {
-		Create(guild *Guild) (*error, error)
-		Get(id string) (*Guild, error)
-		GetPreview(id string) (*Guild, error)
-	}
-
-	Guilds struct{}
+	IChannel interface{}
 )
-
-func New() (IGuild, error) {
-	return nil, nil
-}

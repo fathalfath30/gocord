@@ -17,12 +17,56 @@
 
 package gocord
 
-type (
-	IGoCord interface{}
+import (
+	"net/http"
 
-	GoCord struct{}
+	"github.com/fathalfath30/gocord/gocord/channel"
+	"github.com/fathalfath30/gocord/gocord/guild"
 )
 
-func New() (*IGoCord, error) {
-	return nil, nil
+//go:generate mockery --name IDiscordClient --filename discord_client.mock.go --structname DiscordClientMock
+//go:generate mockery --name IGoCord --filename gocord.mock.go --structname GoCordMock
+type (
+	IDiscordClient interface {
+		Do(req *http.Request) (*http.Response, error)
+	}
+
+	IGoCord interface {
+		Guild() guild.IGuild
+		Channel() channel.IChannel
+	}
+
+	Config struct {
+		Proxy string
+	}
+
+	GoCord struct {
+		guild   guild.IGuild
+		channel channel.IChannel
+	}
+
+	Constructor struct {
+		Guild   guild.IGuild
+		Channel channel.IChannel
+	}
+)
+
+func New(constructor *Constructor) (IGoCord, error) {
+	var gc *GoCord
+	if constructor != nil {
+		gc = &GoCord{
+			guild:   constructor.Guild,
+			channel: constructor.Channel,
+		}
+	}
+
+	return gc, nil
+}
+
+func (gc *GoCord) Guild() guild.IGuild {
+	return nil
+}
+
+func (gc *GoCord) Channel() channel.IChannel {
+	return nil
 }

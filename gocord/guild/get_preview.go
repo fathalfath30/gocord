@@ -17,17 +17,6 @@
 
 package guild
 
-//go:generate mockery --name IGuild --filename guild.mock.go --structname GuildMock
-type (
-	IGuild interface {
-		Create(guild *Guild) (*error, error)
-		Get(id string) (*Guild, error)
-		GetPreview(id string) (*Guild, error)
-	}
-
-	Guilds struct{}
-)
-
-func New() (IGuild, error) {
+func (g *Guild) GetPreview(id string) (*Guild, error) {
 	return nil, nil
 }

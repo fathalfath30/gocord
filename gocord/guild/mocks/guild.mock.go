@@ -64,6 +64,32 @@ func (_m *GuildMock) Get(id string) (*guild.Guild, error) {
 	return r0, r1
 }
 
+// GetPreview provides a mock function with given fields: id
+func (_m *GuildMock) GetPreview(id string) (*guild.Guild, error) {
+	ret := _m.Called(id)
+
+	var r0 *guild.Guild
+	var r1 error
+	if rf, ok := ret.Get(0).(func(string) (*guild.Guild, error)); ok {
+		return rf(id)
+	}
+	if rf, ok := ret.Get(0).(func(string) *guild.Guild); ok {
+		r0 = rf(id)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*guild.Guild)
+		}
+	}
+
+	if rf, ok := ret.Get(1).(func(string) error); ok {
+		r1 = rf(id)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
 type mockConstructorTestingTNewGuildMock interface {
 	mock.TestingT
 	Cleanup(func())
