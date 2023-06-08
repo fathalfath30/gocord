@@ -29,6 +29,8 @@ func New(constructor *Constructor) (IGoCord, error) {
 			guild:   constructor.Guild,
 			channel: constructor.Channel,
 		}
+
+		return gc, nil
 	}
 
 	var err error

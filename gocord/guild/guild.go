@@ -30,11 +30,11 @@ type (
 	}
 
 	Guilds struct {
-		client discord.IDiscordClient
+		client discord.IClient
 	}
 
 	Constructor struct {
-		Client discord.IDiscordClient
+		Client discord.IClient
 	}
 )
 

@@ -17,6 +17,17 @@
 
 package channel
 
+//go:generate mockery --name IChannel --filename channel.mock.go --structname ChannelMock
 type (
-	IChannel interface{}
+	IChannel interface {
+		Get()
+	}
+
+	Channel struct{}
 )
+
+func New() (*Channel, error) {
+	return nil, nil
+}
+
+func (ch *Channel) Get() {}
