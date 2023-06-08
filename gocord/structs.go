@@ -22,28 +22,25 @@ import (
 	"github.com/fathalfath30/gocord/gocord/guild"
 )
 
-func New(constructor *Constructor) (IGoCord, error) {
-	var gc *GoCord
-	if constructor != nil {
-		gc = &GoCord{
-			guild:   constructor.Guild,
-			channel: constructor.Channel,
-		}
+type (
+	Config struct {
+		BotToken string
+		Proxy    string
 	}
 
-	var err error
-	gc.guild, err = guild.New(nil)
-	if err != nil {
-		return nil, err
+	Locale struct {
+		Locale       string
+		LanguageName string
+		NativeName   string
 	}
 
-	return gc, nil
-}
+	GoCord struct {
+		guild   guild.IGuild
+		channel channel.IChannel
+	}
 
-func (gc *GoCord) Guild() guild.IGuild {
-	return gc.guild
-}
-
-func (gc *GoCord) Channel() channel.IChannel {
-	return gc.channel
-}
+	Constructor struct {
+		Guild   guild.IGuild
+		Channel channel.IChannel
+	}
+)

@@ -17,6 +17,8 @@
 
 package guild
 
+import "github.com/fathalfath30/gocord/gocord"
+
 //go:generate mockery --name IGuild --filename guild.mock.go --structname GuildMock
 type (
 	IGuild interface {
@@ -25,9 +27,15 @@ type (
 		GetPreview(id string) (*Guild, error)
 	}
 
-	Guilds struct{}
+	Guilds struct {
+		client gocord.IDiscordClient
+	}
+
+	Constructor struct {
+		Client gocord.IDiscordClient
+	}
 )
 
-func New() (IGuild, error) {
+func New(constructor *Constructor) (IGuild, error) {
 	return nil, nil
 }

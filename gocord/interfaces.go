@@ -20,30 +20,21 @@ package gocord
 import (
 	"github.com/fathalfath30/gocord/gocord/channel"
 	"github.com/fathalfath30/gocord/gocord/guild"
+	"net/http"
 )
 
-func New(constructor *Constructor) (IGoCord, error) {
-	var gc *GoCord
-	if constructor != nil {
-		gc = &GoCord{
-			guild:   constructor.Guild,
-			channel: constructor.Channel,
-		}
+//go:generate mockery --name IDiscordClient --filename discord_client.mock.go --structname DiscordClientMock
+//go:generate mockery --name IGoCord --filename gocord.mock.go --structname GoCordMock
+type (
+	IDiscordClient interface {
+		Do(req *http.Request) (*http.Response, error)
 	}
 
-	var err error
-	gc.guild, err = guild.New(nil)
-	if err != nil {
-		return nil, err
+	IGoCord interface {
+		// Guild will return guild.IGuild to manage discord server
+		Guild() guild.IGuild
+
+		// Channel will return channel.IChannel to manage channel
+		Channel() channel.IChannel
 	}
-
-	return gc, nil
-}
-
-func (gc *GoCord) Guild() guild.IGuild {
-	return gc.guild
-}
-
-func (gc *GoCord) Channel() channel.IChannel {
-	return gc.channel
-}
+)
