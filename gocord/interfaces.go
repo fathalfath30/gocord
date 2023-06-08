@@ -20,16 +20,10 @@ package gocord
 import (
 	"github.com/fathalfath30/gocord/gocord/channel"
 	"github.com/fathalfath30/gocord/gocord/guild"
-	"net/http"
 )
 
-//go:generate mockery --name IDiscordClient --filename discord_client.mock.go --structname DiscordClientMock
 //go:generate mockery --name IGoCord --filename gocord.mock.go --structname GoCordMock
 type (
-	IDiscordClient interface {
-		Do(req *http.Request) (*http.Response, error)
-	}
-
 	IGoCord interface {
 		// Guild will return guild.IGuild to manage discord server
 		Guild() guild.IGuild

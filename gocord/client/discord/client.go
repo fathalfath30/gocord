@@ -15,8 +15,13 @@
 //
 */
 
-package guild
+package discord
 
-func (g *Guild) Create(guild *Guild) (*Guild, error) {
-	return nil, nil
-}
+import "net/http"
+
+//go:generate mockery --name IClient --filename discord_client.mock.go --structname ClientMock
+type (
+	IClient interface {
+		Do(req *http.Request) (*http.Response, error)
+	}
+)
