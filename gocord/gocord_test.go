@@ -19,7 +19,9 @@ package gocord_test
 import (
 	"context"
 	"github.com/fathalfath30/gocord/gocord"
+	"github.com/fathalfath30/gocord/gocord/channel"
 	channelMock "github.com/fathalfath30/gocord/gocord/channel/mocks"
+	"github.com/fathalfath30/gocord/gocord/guild"
 	guildMock "github.com/fathalfath30/gocord/gocord/guild/mocks"
 	"github.com/stretchr/testify/suite"
 	"testing"
@@ -74,4 +76,13 @@ func (ts *GoCordTestSuite) Test_GoCord_CanCreateWithMockedConstructor() {
 
 	ts.Require().IsType(&guildMock.GuildMock{}, gc.Guild())
 	ts.Require().IsType(&channelMock.ChannelMock{}, gc.Channel())
+}
+
+func (ts *GoCordTestSuite) Test_GoCord_Should_CreateNewObjectIfNotMocked() {
+	gc, err := gocord.New(nil)
+	ts.Require().NotNil(gc)
+	ts.Require().Nil(err)
+
+	ts.Require().IsType(&guild.Guild{}, gc.Guild())
+	ts.Require().IsType(&channel.Channel{}, gc.Channel())
 }

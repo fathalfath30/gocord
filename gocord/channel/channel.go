@@ -27,7 +27,8 @@ type (
 )
 
 func New() (*Channel, error) {
-	return nil, nil
+	ch := new(Channel)
+	return ch, nil
 }
 
 func (ch *Channel) Get() {}

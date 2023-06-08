@@ -32,9 +32,15 @@ func New(constructor *Constructor) (IGoCord, error) {
 
 		return gc, nil
 	}
-
+	
+	gc = new(GoCord)
 	var err error
 	gc.guild, err = guild.New(nil)
+	if err != nil {
+		return nil, err
+	}
+
+	gc.channel, err = channel.New()
 	if err != nil {
 		return nil, err
 	}

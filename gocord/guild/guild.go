@@ -39,5 +39,6 @@ type (
 )
 
 func New(constructor *Constructor) (IGuild, error) {
-	return nil, nil
+	g := new(Guild)
+	return g, nil
 }
